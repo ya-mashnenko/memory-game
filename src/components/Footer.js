@@ -7,7 +7,7 @@ const Footer = () => {
         <a href="https://rs.school/js/">
           <img
             src="https://rs.school/images/rs_school_js.svg"
-            alt="RSScool"
+            alt="RSSchool"
             width="50px"
             height="50px"
           />
