@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const imagesForCards = [
   { img: "https://picsum.photos/200/250?random=1", key: 1 },
@@ -11,20 +11,28 @@ const imagesForCards = [
   { img: "https://picsum.photos/200/250?random=3", key: 8 },
 ];
 
-const frontImg = "../public/sigmund-XlMD1fGBnAg-unsplash.jpg";
+// const frontImg = "../public/sigmund-XlMD1fGBnAg-unsplash.jpg";
 
 const Card = (item) => {
-  // let [flippedCard, flipCard] = useState(false);
+  let [cardPair, addCard] = useState([]);
 
-  // const handleClick = () => flipCard(!flippedCard);
-
-  // const imgClass = flippedCard ? "front" : "back";
+  const turnToFront = (event) => {
+    const currentPic = event.currentTarget;
+    // // flipCard("visible");
+    currentPic.classList.toggle("active");
+    addCard(currentPic);
+    // const toLog = currentPic.getElementsByTagName("img");
+    // console.log(currentPic.getElementsByTagName("img").src);
+    // console.log(this.toLog.src);
+  };
   return (
     <li key={item.key}>
-      <img
-        src={item.img}
-        // className={imgClass} onClick={handleClick}
-      />
+      <div className="flipCard" onClick={turnToFront}>
+        <div className="front">
+          <img src={item.img} />
+        </div>
+        <div className="back" />
+      </div>
     </li>
   );
 };
