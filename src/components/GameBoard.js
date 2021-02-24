@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import imagesForCards from "./Utilities";
+import { imagesForCards } from "./Utilities";
+import Modal from "./Modal";
 
-const Card = ({ img, onClick }) => {
+const Card = ({ img, onClick, indx, onKeyDown }) => {
   return (
-    <div onClick={(event) => onClick(event, img)} className="card">
+    <div
+      onClick={(event) => onClick(event, img)}
+      className="card"
+      onKeyDown={(event) => onKeyDown(event, indx)}
+    >
       <img src={img.src} alt="remember this card" className="front" />
     </div>
   );
@@ -12,6 +17,21 @@ const Card = ({ img, onClick }) => {
 const GameBoard = () => {
   const [openedCardInfo, setOpenedCardInfo] = useState({ src: "", id: null });
   const [isItTimeToMatch, setTimeToMatch] = useState(false);
+  const [isWinner, setWinner] = useState(false);
+
+  const getWinner = () => {
+    const cardsWinners = Array.from(document.getElementsByClassName("guessed"));
+    setWinner(cardsWinners.length === imagesForCards.length);
+    if (isWinner) {
+      setTimeout(
+        () =>
+          Array.from(document.getElementsByClassName("guessed")).map((card) =>
+            card.classList.remove("guessed")
+          ),
+        2000
+      );
+    }
+  };
 
   const guessedBehaviour = () => {
     const selectedCards = Array.from(document.getElementsByClassName("flip"));
@@ -20,6 +40,7 @@ const GameBoard = () => {
       card.classList.add("guessed");
       return card;
     });
+    getWinner();
   };
 
   const hideCards = () => {
@@ -33,7 +54,6 @@ const GameBoard = () => {
   };
 
   const handleCardClick = (event, img) => {
-    console.log(img);
     const currentCard = event.target;
     currentCard.classList.add("flip");
 
@@ -49,12 +69,27 @@ const GameBoard = () => {
     }
   };
 
+  const handleKeyPress = (event, indx) => {
+    event.key === indx + 1
+      ? console.log(`pressed ${event.code}`)
+      : console.log(`doesn't work ${event.code}`);
+  };
+
   return (
-    <div className="board">
-      {imagesForCards.map((img) => (
-        <Card key={img.id} img={img} onClick={handleCardClick} />
-      ))}
-    </div>
+    <>
+      <div className="board">
+        {imagesForCards.map((img, indx) => (
+          <Card
+            key={img.id}
+            img={img}
+            onClick={handleCardClick}
+            indx={indx}
+            onKeyDown={handleKeyPress}
+          />
+        ))}
+      </div>
+      <>{isWinner ? <Modal /> : null}</>
+    </>
   );
 };
 

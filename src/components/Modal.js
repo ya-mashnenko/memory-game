@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 
 const Modal = () => {
-  let [showMod, setModal] = useState(false);
+  let [showMod, setModal] = useState(true);
 
   const showModal = () => setModal(true);
 
@@ -11,13 +11,15 @@ const Modal = () => {
     <div>
       <button onClick={showModal}>Show modal</button>
       {showMod ? (
-        <div className="modal" id="modal">
-          <h2>Congratulations!</h2>
-          <div className="content">You win!</div>
-          <div className="actions">
-            <button className="toggle-button" onClick={hideModal}>
-              Close modal
-            </button>
+        <div className="modal-container">
+          <div className="modal" id="modal">
+            <h2>Congratulations!</h2>
+            <div className="content">You won!</div>
+            <div className="actions">
+              <button className="toggle-button" onClick={hideModal}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       ) : null}
