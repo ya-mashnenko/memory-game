@@ -77,23 +77,14 @@ header {
 }
 
 .card.flip,
-.guessed {
+.card.guessed {
   transform: rotateY(180deg);
-}
-
-.front,
-.back {
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.back {
-  cursor: pointer;
-  /* width: 100%;
-  height: 100%; */
+  transition: transform 0.5s;
 }
 
 .front {
+  position: absolute;
+  backface-visibility: hidden;
   transform: rotateY(180deg);
 }
 
