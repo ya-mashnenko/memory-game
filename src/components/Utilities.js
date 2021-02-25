@@ -10,7 +10,7 @@ const imagesForCards = [
 ];
 
 // const imagesForShortGame = imagesForCards
-//   .splice(4, 4)
+//   .slice(0, 4)
 //   .sort(() => Math.random() - 0.5)
 //   .forEach((item) => (item.id = Math.round(Math.random() * 10000)));
 // console.log(imagesForShortGame);
@@ -21,11 +21,11 @@ imagesForCards
   .forEach((item) => (item.id = Math.round(Math.random() * 10000)));
 
 const menuList = [
-  "New Game",
-  "Short Game",
-  "Sound",
-  "Play with Time",
-  "Dark Theme",
+  { title: "New Game", id: "newGame" },
+  { title: "Short Game", id: "gameLength" },
+  { title: "Sound", id: "sound" },
+  { title: "Play with Time", id: "timer" },
+  { title: "Dark Theme", id: "theme" },
 ];
 
 export { menuList, imagesForCards };
