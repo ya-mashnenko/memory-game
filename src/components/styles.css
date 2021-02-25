@@ -24,8 +24,6 @@ header {
   background-color: #121013;
   position: fixed;
   color: white;
-  /* left: 0; */
-  /* top: 0; */
   height: 10vh;
   width: 100%;
   grid-row-start: 1;
@@ -49,7 +47,6 @@ header {
   top: 80px;
   right: 0;
   /* width: 500px; */
-  /* background-color: #783; */
   color: white;
   list-style: none;
   display: block;
@@ -65,7 +62,6 @@ header {
   float: left;
   padding: 1rem;
   position: relative;
-  /* text-decoration: none;*/
   transition-duration: 0.5s;
   text-align: right;
   clear: both;

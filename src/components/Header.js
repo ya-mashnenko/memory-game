@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import Timer from "./Timer";
 import MenuList from "./Menu";
+import useSound from "use-sound";
 
 const Header = () => {
   const [isMenuOpen, setMenuCondition] = useState(false);
+  const [clickMenu] = useSound("public/sounds/short-click.mp3");
+  const [click] = useSound("public/sounds/water-click.mp3");
 
   const handleClick = () => {
     setMenuCondition(!isMenuOpen);
+    clickMenu();
   };
 
   return (
     <header>
-      <div className="game-name">Memory Game</div>
+      <div className="game-name" onClick={click}>
+        Memory Game
+      </div>
       {/* <Timer /> */}
       <div className="menu">
         <img

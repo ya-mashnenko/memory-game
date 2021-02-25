@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { imagesForCards } from "./Utilities";
 import Modal from "./Modal";
+import useSound from "use-sound";
 
 const Card = ({ img, onClick, indx, onKeyDown }) => {
   return (
@@ -18,6 +19,7 @@ const GameBoard = () => {
   const [openedCardInfo, setOpenedCardInfo] = useState({ src: "", id: null });
   const [isItTimeToMatch, setTimeToMatch] = useState(false);
   const [isWinner, setWinner] = useState(false);
+  const [clickCard] = useSound("public/sounds/water-click.mp3");
 
   const getWinner = () => {
     const cardsWinners = Array.from(document.getElementsByClassName("guessed"));
@@ -56,7 +58,7 @@ const GameBoard = () => {
   const handleCardClick = (event, img) => {
     const currentCard = event.target;
     currentCard.classList.add("flip");
-
+    clickCard();
     if (isItTimeToMatch) {
       img.src === openedCardInfo.src && img.id !== openedCardInfo.id
         ? guessedBehaviour()
@@ -88,7 +90,7 @@ const GameBoard = () => {
           />
         ))}
       </div>
-      <>{isWinner ? <Modal /> : null}</>
+      <>{isWinner ? <Modal result={true} /> : null}</>
     </>
   );
 };
