@@ -36,15 +36,48 @@ import { menuList } from "./Utilities";
 // return isTimer?<Timer />:null
 // }
 
+// const MenuList = () => {
+//   return (
+//     <ul className="menu-list">
+//       {menuList.map((option) => (
+//         <li className="menu-option" id={option.id} key={option.id}>
+//           {option.title}
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
+
+// const menuList = [
+//   { title: "New Game", id: "newGame" },
+//   { title: "Short Game", id: "gameLength" },
+//   { title: "Sound", id: "sound" },
+//   { title: "Play with Time", id: "timer" },
+//   { title: "Dark Theme", id: "theme" },
+// ];
+
 const MenuList = () => {
   return (
-    <ul className="menu-list">
-      {menuList.map((option) => (
-        <li className="menu-option" id={option.id} key={option.id}>
-          {option.title}
-        </li>
-      ))}
-    </ul>
+    <div className="menu-list">
+      <div className="menu-option" id="newGame">
+        New Game
+      </div>
+      <div className="menu-option" id="gameLength">
+        Short Game
+      </div>
+      <div className="menu-option">
+        <input type="checkbox" id="sound" name="sound" value="Sound" />
+        <label for="sound"> Sound </label>
+      </div>
+      <div className="menu-option">
+        <input type="checkbox" id="timer" name="timer" value="Timer" />
+        <label for="timer"> Play with Time</label>
+      </div>
+      <div className="menu-option">
+        <input type="checkbox" id="theme" name="theme" value="Theme" />
+        <label for="theme"> Dark Theme</label>
+      </div>
+    </div>
   );
 };
 
