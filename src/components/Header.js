@@ -20,6 +20,7 @@ const Header = () => {
       </div>
       {/* <Timer /> */}
       <div className="menu">
+        {/* <button onClick={turnOffSound}>Turn sound off</button> */}
         <img
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAOUlEQVRoge3XMQEAIAwDQcC/5yCiQ4beKciPOQd2u0nSHjHx2gOmBAAAwF4eWZsAAADYyyNrEwB0feFZDApmsPdrAAAAAElFTkSuQmCC"
           onClick={handleClick}

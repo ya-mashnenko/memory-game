@@ -20,12 +20,4 @@ imagesForCards
   .sort(() => Math.random() - 0.5)
   .forEach((item) => (item.id = Math.round(Math.random() * 10000)));
 
-const menuList = [
-  { title: "New Game", id: "newGame" },
-  { title: "Short Game", id: "gameLength" },
-  { title: "Sound", id: "sound" },
-  { title: "Play with Time", id: "timer" },
-  { title: "Dark Theme", id: "theme" },
-];
-
-export { menuList, imagesForCards };
+export { imagesForCards };
