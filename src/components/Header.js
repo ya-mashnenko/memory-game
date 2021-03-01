@@ -6,7 +6,7 @@ import useSound from "use-sound";
 const Header = () => {
   const [isMenuOpen, setMenuCondition] = useState(false);
   const [clickMenu] = useSound("public/sounds/short-click.mp3");
-  const [click] = useSound("public/sounds/water-click.mp3");
+  // const [click] = useSound("public/sounds/water-click.mp3");
   // const [play] = useSound(sound, {
   //   sprite: {
   //     clickMenu: "public/sounds/short-click.mp3",
@@ -27,9 +27,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="game-name" id="" onClick={click}>
-        Memory Game
-      </div>
+      <div className="game-name">Memory Game</div>
       {/* <Timer /> */}
       <div className="menu">
         {/* <button onClick={turnOffSound}>Turn sound off</button> */}

@@ -1,4 +1,5 @@
 import useSound from "use-sound";
+import React, { useState, useEffect } from "react";
 
 // const handleGameLength = () => {
 //   const [shortGame, setGameLength] = useState(false);
@@ -44,17 +45,15 @@ const handleTimer = (event) => {
 };
 
 // const switchSound = () => {
-//     const [play, { stop }] = useSound(sound, {
-//       sprite: {
-//         clickMenu: "public/sounds/short-click.mp3",
-//         clickHeader: "public/sounds/water-click.mp3",
-//       }
-//     });
+//   const [isSoundOn, setSound] = useState(true);
+//   const [clickCard] = useSound("public/sounds/water-click.mp3");
+//   setSound(!isSoundOn);
 
-//     const playSound = (e) => {
-//       e.preventDefault();
-//       play(e.target.id);
-//     };
-//   }
+//   const cards = Array.from(document.getElementsByClassName("card"));
+
+//   isSoundOn
+//     ? cards.map((card) => card.addEventListener("click", clickCard))
+//     : cards.map((card) => card.removeEventListener("click", clickCard));
+// };
 
 export { handleTimer, handleResetGame };

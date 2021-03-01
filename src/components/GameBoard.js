@@ -21,6 +21,7 @@ const GameBoard = () => {
   const [isWinner, setWinner] = useState(false);
   const [clickCard] = useSound("public/sounds/water-click.mp3");
 
+  const isSoundOn = true;
   // const allCards = Array.from(document.getElementsByClassName("card"));
   // allCards.forEach(card => card.addEventListener("click", handleCardClick));
 
@@ -68,7 +69,7 @@ const GameBoard = () => {
   const handleCardClick = (event, img) => {
     const currentCard = event.target;
     currentCard.classList.add("flip");
-    clickCard();
+    isSoundOn ? clickCard() : null;
     if (isItTimeToMatch) {
       img.src === openedCardInfo.src && img.id !== openedCardInfo.id
         ? guessedBehaviour()
