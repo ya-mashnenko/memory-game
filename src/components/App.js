@@ -18,6 +18,8 @@ const App = () => {
   //   }
   // };
 
+  // const saveProgress = window.localStorage;
+
   return (
     // <ThemeProvider theme={lightTheme}>
     <>

@@ -8,11 +8,11 @@ const Modal = ({ result }) => {
   const isWinner = result;
 
   isWinner ? winnerSound() : looserSound();
-  const hideModal = () => setModal(false);
+  // const hideModal = () => setModal(false);
 
-  useEffect(() => {
-    return setModal(true);
-  });
+  // useEffect(() => {
+  //   return setModal(true);
+  // });
 
   return (
     <div>
@@ -25,7 +25,10 @@ const Modal = ({ result }) => {
               {isWinner ? "You won!" : "You loose!"}
             </div>
             <div className="actions">
-              <button className="toggle-button" onClick={hideModal}>
+              <button
+                className="toggle-button"
+                // onClick={hideModal}
+              >
                 Close
               </button>
             </div>

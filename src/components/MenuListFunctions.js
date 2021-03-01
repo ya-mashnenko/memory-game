@@ -1,25 +1,27 @@
-const handleGameLength = () => {
-  const [shortGame, setGameLength] = useState(false);
-  setGameLength(!shortGame);
-  shortGame ? (
-    <GameBoard arr={imagesForShortGame} />
-  ) : (
-    <GameBoard arr={imagesForLongGame} />
-  );
-  //   setGameLength(!shortGame);
+import useSound from "use-sound";
 
-  // const longGame = () => {
-  //   <GameBoard arr={imagesForLongGame} />;
-  //   title = "Short " + title;
-  // };
+// const handleGameLength = () => {
+//   const [shortGame, setGameLength] = useState(false);
+//   setGameLength(!shortGame);
+//   shortGame ? (
+//     <GameBoard arr={imagesForShortGame} />
+//   ) : (
+//     <GameBoard arr={imagesForLongGame} />
+//   );
+//   setGameLength(!shortGame);
 
-  // const shortGame = () => {
-  //   <GameBoard arr={imagesForShortGame} />;
-  //   title = "Long " + title;
-  // };
-  // setGameLength(!shortGame);
-  // shortGame ? shortGame(event.title) : longGame(event.title);
-};
+// const longGame = () => {
+//   <GameBoard arr={imagesForLongGame} />;
+//   title = "Short " + title;
+// };
+
+// const shortGame = () => {
+//   <GameBoard arr={imagesForShortGame} />;
+//   title = "Long " + title;
+// };
+// setGameLength(!shortGame);
+// shortGame ? shortGame(event.title) : longGame(event.title);
+// };
 
 const handleResetGame = () => {
   useEffect(
@@ -41,4 +43,18 @@ const handleTimer = (event) => {
   return isTimer ? <Timer /> : null;
 };
 
-export { handleTimer, handleResetGame, handleGameLength };
+// const switchSound = () => {
+//     const [play, { stop }] = useSound(sound, {
+//       sprite: {
+//         clickMenu: "public/sounds/short-click.mp3",
+//         clickHeader: "public/sounds/water-click.mp3",
+//       }
+//     });
+
+//     const playSound = (e) => {
+//       e.preventDefault();
+//       play(e.target.id);
+//     };
+//   }
+
+export { handleTimer, handleResetGame };
