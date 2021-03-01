@@ -2,19 +2,18 @@ import React, { useState, useEffect } from "react";
 
 const Timer = () => {
   const [timeLeft, setTime] = useState(59);
-  const timeOn = () => {
-    setTime(timeLeft - 1);
-    if (timeLeft <= 0) {
-      clearInterval(timeOn);
-    }
-  };
-  // useEffect(() => {
-  //   setInterval(timeOn, 1000);
-  //   return clearInterval(timeOn);
-  // }, [timeLeft]);
-  const timer = setInterval(timeOn, 1000);
 
-  return <div className="timer">00:{timeLeft}</div>;
+  useEffect(() => {
+    if (timeLeft === 0) return;
+
+    const timer = setInterval(() => {
+      setTime(timeLeft - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  return <div className="timer">00:{`0${timeLeft}`.slice(-2)}</div>;
 };
 
 export default Timer;
