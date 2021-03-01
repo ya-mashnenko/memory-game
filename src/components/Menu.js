@@ -16,6 +16,7 @@ const MenuList = () => {
       </div>
       <div className="menu-option">
         <input type="checkbox" id="sound" name="sound" value="Sound" />
+        <span class="check-mark"></span>
         <label for="sound"> Sound </label>
       </div>
       <div className="menu-option">
@@ -26,10 +27,12 @@ const MenuList = () => {
           value="Timer"
           onChange={handleTimer}
         />
+        <span class="check-mark"></span>
         <label for="timer"> Play with Time</label>
       </div>
       <div className="menu-option">
         <input type="checkbox" id="theme" name="theme" value="Theme" />
+        <span class="check-mark"></span>
         <label for="theme"> Dark Theme</label>
       </div>
     </div>
