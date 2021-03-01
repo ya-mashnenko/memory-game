@@ -3,7 +3,7 @@ import { imagesForLongGame, imagesForShortGame } from "./Utilities";
 import Modal from "./Modal";
 import useSound from "use-sound";
 
-const Card = ({ img, onClick, indx, onKeyDown }) => {
+const Card = ({ img, indx, onClick, onKeyDown }) => {
   return (
     <div
       onClick={(event) => onClick(event, img)}
@@ -21,9 +21,12 @@ const GameBoard = () => {
   const [isWinner, setWinner] = useState(false);
   const [clickCard] = useSound("public/sounds/water-click.mp3");
 
+  // const allCards = Array.from(document.getElementsByClassName("card"));
+  // allCards.forEach(card => card.addEventListener("click", handleCardClick));
+
   const getWinner = () => {
     const cardsWinners = Array.from(document.getElementsByClassName("guessed"));
-    setWinner(cardsWinners.length === imagesForShortGame.length);
+    setWinner(cardsWinners.length === imagesForLongGame.length);
     if (isWinner) {
       setTimeout(
         () =>
@@ -85,9 +88,9 @@ const GameBoard = () => {
   };
 
   return (
-    <>
+    <div className="board-container">
       <div className="board">
-        {imagesForShortGame.map((img, indx) => (
+        {imagesForLongGame.map((img, indx) => (
           <Card
             key={img.id}
             img={img}
@@ -98,7 +101,7 @@ const GameBoard = () => {
         ))}
       </div>
       <>{isWinner ? <Modal result={true} /> : null}</>
-    </>
+    </div>
   );
 };
 
