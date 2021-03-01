@@ -1,25 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Timer = () => {
-  // const timeLeft = setInterval(() => {
-  //   const timer = "01:00";
-  //   const [minLeft, secLeft] = timer.split(":");
-  //   console.log(minLeft);
-  //   minLeft = +minLeft;
-  //   minLeft = minLeft--;
-  //   if (secLeft === "00") {
-  //     secLeft = 59;
-  //   }
-  //   secLeft = +secLeft;
-  //   secLeft = secLeft--;
-  //   timer = `${minLeft}:${seconds}`;
-  //   if (timer < 0) {
-  //     clearInterval(timeLeft);
-  //   }
-  //   return;
-  // }, 1000);
+  const [timeLeft, setTime] = useState(59);
+  const timeOn = () => {
+    setTime(timeLeft - 1);
+    if (timeLeft <= 0) {
+      clearInterval(timeOn);
+    }
+  };
+  // useEffect(() => {
+  //   setInterval(timeOn, 1000);
+  //   return clearInterval(timeOn);
+  // }, [timeLeft]);
+  const timer = setInterval(timeOn, 1000);
 
-  return <div className="timer">{timeLeft}</div>;
+  return <div className="timer">00:{timeLeft}</div>;
 };
 
 export default Timer;
