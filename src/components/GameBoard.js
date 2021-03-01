@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { imagesForCards } from "./Utilities";
+import { imagesForLongGame, imagesForShortGame } from "./Utilities";
 import Modal from "./Modal";
 import useSound from "use-sound";
 
@@ -23,12 +23,15 @@ const GameBoard = () => {
 
   const getWinner = () => {
     const cardsWinners = Array.from(document.getElementsByClassName("guessed"));
-    setWinner(cardsWinners.length === imagesForCards.length);
+    setWinner(cardsWinners.length === imagesForShortGame.length);
     if (isWinner) {
       setTimeout(
         () =>
-          Array.from(document.getElementsByClassName("guessed")).map((card) =>
-            card.classList.remove("guessed")
+          Array.from(document.getElementsByClassName("guessed")).map(
+            (card) => card.classList.remove("guessed")
+
+            // card.addEventListener("click", handleCardClick);
+            // return card;
           ),
         2000
       );
@@ -42,6 +45,10 @@ const GameBoard = () => {
       card.classList.add("guessed");
       return card;
     });
+
+    // const winCards = Array.from(document.getElementsByClassName("guessed"));
+    // winCards.map((card) => card.removeEventListener("click", handleCardClick));
+
     getWinner();
   };
 
@@ -80,7 +87,7 @@ const GameBoard = () => {
   return (
     <>
       <div className="board">
-        {imagesForCards.map((img, indx) => (
+        {imagesForShortGame.map((img, indx) => (
           <Card
             key={img.id}
             img={img}

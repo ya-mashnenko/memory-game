@@ -1,18 +1,25 @@
-// const handleGameLength = (event) => {
-//   const [shortGame, setGameLength] = useState(false);
+const handleGameLength = () => {
+  const [shortGame, setGameLength] = useState(false);
+  setGameLength(!shortGame);
+  shortGame ? (
+    <GameBoard arr={imagesForShortGame} />
+  ) : (
+    <GameBoard arr={imagesForLongGame} />
+  );
+  //   setGameLength(!shortGame);
 
-//   const longGame = (title) => {
-//     <GameBoard arr={imagesForLongGame} />;
-//     title = "Short " + title;
-//   };
+  // const longGame = () => {
+  //   <GameBoard arr={imagesForLongGame} />;
+  //   title = "Short " + title;
+  // };
 
-//   const shortGame = (title) => {
-//     <GameBoard arr={imagesForShortGame} />;
-//     title = "Long " + title;
-//   };
-//   setGameLength(!shortGame);
-//   shortGame ? shortGame(event.title) : longGame(event.title);
-// };
+  // const shortGame = () => {
+  //   <GameBoard arr={imagesForShortGame} />;
+  //   title = "Long " + title;
+  // };
+  // setGameLength(!shortGame);
+  // shortGame ? shortGame(event.title) : longGame(event.title);
+};
 
 const handleResetGame = () => {
   useEffect(
