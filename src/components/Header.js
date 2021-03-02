@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
-import MenuList from "./Menu";
-import { handleGameLength } from "./MenuListFunctions";
 import useSound from "use-sound";
 
-const Header = ({ onNewGame, switchSound, isSoundOn }) => {
+const Header = ({
+  onNewGame,
+  switchSound,
+  isSoundOn,
+  setGameLength,
+  isGameLong,
+}) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [showTimer, setTimer] = useState(false);
   const [clickMenu] = useSound("public/sounds/short-click.mp3");
@@ -34,7 +38,7 @@ const Header = ({ onNewGame, switchSound, isSoundOn }) => {
                 className="menu-option"
                 id="newGame"
                 onClick={() => {
-                  onNewGame();
+                  onNewGame(isGameLong);
                   setMenuOpen(false);
                 }}
               >
@@ -43,9 +47,12 @@ const Header = ({ onNewGame, switchSound, isSoundOn }) => {
               <div
                 className="menu-option"
                 id="gameLength"
-                onClick={handleGameLength}
+                onClick={() => {
+                  setGameLength(!isGameLong);
+                  onNewGame(!isGameLong);
+                }}
               >
-                Short Game
+                {isGameLong ? "Short Game" : "Long Game"}
               </div>
               <label className="menu-option">
                 <input
@@ -58,7 +65,7 @@ const Header = ({ onNewGame, switchSound, isSoundOn }) => {
                   }}
                 />
                 <span className="check-mark"></span>
-                Switch Sound
+                {isSoundOn ? "Sound Off" : "Sound On"}
               </label>
               <label className="menu-option">
                 <input
@@ -73,11 +80,6 @@ const Header = ({ onNewGame, switchSound, isSoundOn }) => {
                 />
                 <span className="check-mark"></span>
                 Play with Time
-              </label>
-              <label className="menu-option">
-                <input type="checkbox" id="theme" name="theme" value="Theme" />
-                <span className="check-mark"></span>
-                Dark Theme
               </label>
             </div>
           ) : null}
