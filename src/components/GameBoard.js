@@ -10,10 +10,9 @@ const Card = ({ img, onClick }) => {
   );
 };
 
-const GameBoard = ({ cards, setCards }) => {
+const GameBoard = ({ cards, setCards, isSoundOn, onNewGame }) => {
   const [isWinner, setWinner] = useState(false);
   const [clickCard] = useSound("public/sounds/water-click.mp3");
-  const isSoundOn = true;
 
   // const getWinner = () => {
   //   setWinner(cards.every((img) => img.state === "guessed"));
@@ -46,10 +45,12 @@ const GameBoard = ({ cards, setCards }) => {
   useEffect(() => {
     const isWinner = cards.every((img) => img.state === "guessed");
     setWinner(isWinner);
+    // localStorage.removeItem("cards");
 
     // if (isWinner) {
-    //   setTimeout(onNewGame, 2000);
-    // }
+    //   setTimeout(() => {
+    //     localStorage.removeItem("cards");
+    //   }, 2000);
   }, [cards]);
 
   const handleCardClick = ({ id, src }) => {
@@ -68,7 +69,11 @@ const GameBoard = ({ cards, setCards }) => {
           <Card key={img.id} img={img} onClick={() => handleCardClick(img)} />
         ))}
       </div>
-      <>{isWinner ? <Modal result={true} /> : null}</>
+      <>
+        {isWinner ? (
+          <Modal isWinner={true} isSoundOn={isSoundOn} onNewGame={onNewGame} />
+        ) : null}
+      </>
     </div>
   );
 };
