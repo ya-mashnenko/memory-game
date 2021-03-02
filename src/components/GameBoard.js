@@ -63,18 +63,20 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame }) => {
   };
 
   return (
-    <div className="board-container">
-      <div className="board">
-        {cards.map((img) => (
-          <Card key={img.id} img={img} onClick={() => handleCardClick(img)} />
-        ))}
+    <>
+      <div className="board-container">
+        <div className="board">
+          {cards.map((img) => (
+            <Card key={img.id} img={img} onClick={() => handleCardClick(img)} />
+          ))}
+        </div>
       </div>
       <>
         {isWinner ? (
           <Modal isWinner={true} isSoundOn={isSoundOn} onNewGame={onNewGame} />
         ) : null}
       </>
-    </div>
+    </>
   );
 };
 
