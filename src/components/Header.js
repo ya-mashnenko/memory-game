@@ -4,31 +4,21 @@ import MenuList from "./Menu";
 import { handleGameLength } from "./MenuListFunctions";
 import useSound from "use-sound";
 
-const Header = () => {
-  const [isMenuOpen, setMenuCondition] = useState(false);
+const Header = ({ onNewGame }) => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
   const [showTimer, setTimer] = useState(false);
   const [clickMenu] = useSound("public/sounds/short-click.mp3");
-
-  const handleResetGame = () => {
-    Array.from(document.getElementsByClassName("guessed")).map((card) =>
-      card.classList.remove("guessed")
-    );
-    Array.from(document.getElementsByClassName("flip")).map((card) =>
-      card.classList.remove("flip")
-    );
-  };
 
   const handleTimer = () => {
     setTimer(!showTimer);
   };
 
   const handleClick = (e) => {
-    setMenuCondition(!isMenuOpen);
-    clickMenu;
+    setMenuOpen(!isMenuOpen);
 
     // window.addEventListener("click", (e) => {
     //   const [menu] = document.getElementsByClassName("menu-list");
-    //   e.target !== menu ? setMenuCondition(false) : null;
+    //   e.target !== menu ? setMenuOpen(false) : null;
     // });
   };
 
@@ -47,7 +37,10 @@ const Header = () => {
               <div
                 className="menu-option"
                 id="newGame"
-                onClick={handleResetGame}
+                onClick={() => {
+                  onNewGame();
+                  setMenuOpen();
+                }}
               >
                 New Game
               </div>
