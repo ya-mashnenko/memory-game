@@ -32,12 +32,12 @@ header {
   background-color: #121013;
   position: fixed;
   color: white;
-  height: 10vh;
   width: 100%;
   grid-row-start: 1;
   grid-row-end: 1;
   display: grid;
   grid-template-columns: 30% auto 10%;
+  z-index: 2;
 }
 
 .game-name {
@@ -162,6 +162,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-evenly;
   perspective: 1000px;
+  z-index: 1;
 }
 
 .card {
@@ -212,6 +213,7 @@ footer {
   grid-row-start: 3;
   display: grid;
   grid-template-columns: 33% 33% 33%;
+  z-index: 2;
 }
 
 .school-link {
