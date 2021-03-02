@@ -185,7 +185,7 @@ header {
   transition: transform 0.2s;
 }
 
-.card.flip,
+.card.flipped,
 .card.guessed {
   transform: rotateY(180deg);
   transition: transform 0.5s;
