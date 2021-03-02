@@ -2,26 +2,39 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import GameBoard from "./GameBoard";
-// import { ThemeProvider } from "styled-components";
-// import { lightTheme, darkTheme } from "./Theme";
-// import { GlobalStyles } from "./Style";
 import { generateCards } from "./helpers";
+import useSound from "use-sound";
 
 const App = () => {
   const localStorageCards = Array.from(
     JSON.parse(localStorage.getItem("cards"))
   );
+  const localStorageSound = localStorage.getItem("soundOn") === "true";
   const [cards, setCards] = useState(localStorageCards || generateCards(true));
+  const [isSoundOn, setSound] = useState(localStorageSound || true);
   const onNewGame = () => setCards(generateCards(true));
 
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
   }, [cards]);
 
+  useEffect(() => {
+    localStorage.setItem("soundOn", isSoundOn);
+  }, [isSoundOn]);
+
   return (
     <>
-      <Header onNewGame={onNewGame} />
-      <GameBoard cards={cards} setCards={setCards} />
+      <Header
+        onNewGame={onNewGame}
+        switchSound={setSound}
+        isSoundOn={isSoundOn}
+      />
+      <GameBoard
+        cards={cards}
+        setCards={setCards}
+        isSoundOn={isSoundOn}
+        onNewGame={onNewGame}
+      />
       <Footer />
     </>
   );
