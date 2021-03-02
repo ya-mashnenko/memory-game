@@ -4,7 +4,7 @@ import MenuList from "./Menu";
 import { handleGameLength } from "./MenuListFunctions";
 import useSound from "use-sound";
 
-const Header = ({ onNewGame }) => {
+const Header = ({ onNewGame, switchSound, isSoundOn }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [showTimer, setTimer] = useState(false);
   const [clickMenu] = useSound("public/sounds/short-click.mp3");
@@ -13,13 +13,9 @@ const Header = ({ onNewGame }) => {
     setTimer(!showTimer);
   };
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setMenuOpen(!isMenuOpen);
-
-    // window.addEventListener("click", (e) => {
-    //   const [menu] = document.getElementsByClassName("menu-list");
-    //   e.target !== menu ? setMenuOpen(false) : null;
-    // });
+    isSoundOn ? clickMenu() : null;
   };
 
   return (
@@ -29,7 +25,7 @@ const Header = ({ onNewGame }) => {
       <div className="menu">
         <img
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAOUlEQVRoge3XMQEAIAwDQcC/5yCiQ4beKciPOQd2u0nSHjHx2gOmBAAAwF4eWZsAAADYyyNrEwB0feFZDApmsPdrAAAAAElFTkSuQmCC"
-          onClick={(e) => handleClick(e)}
+          onClick={handleClick}
         />
         <>
           {isMenuOpen ? (
@@ -39,7 +35,7 @@ const Header = ({ onNewGame }) => {
                 id="newGame"
                 onClick={() => {
                   onNewGame();
-                  setMenuOpen();
+                  setMenuOpen(false);
                 }}
               >
                 New Game
@@ -56,11 +52,13 @@ const Header = ({ onNewGame }) => {
                   type="checkbox"
                   id="sound"
                   name="sound"
-                  value="Sound"
-                  // onChange={switchSound}
+                  checked={isSoundOn}
+                  onChange={() => {
+                    switchSound(!isSoundOn);
+                  }}
                 />
                 <span className="check-mark"></span>
-                Sound
+                Switch Sound
               </label>
               <label className="menu-option">
                 <input
@@ -68,7 +66,10 @@ const Header = ({ onNewGame }) => {
                   id="timer"
                   name="timer"
                   value="Timer"
-                  onChange={handleTimer}
+                  onChange={() => {
+                    handleTimer();
+                    // setMenuOpen()
+                  }}
                 />
                 <span className="check-mark"></span>
                 Play with Time
