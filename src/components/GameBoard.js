@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { imagesForLongGame, imagesForShortGame } from "./Utilities";
 import Modal from "./Modal";
 import useSound from "use-sound";
 
@@ -15,12 +14,11 @@ const Card = ({ img, indx, onClick, onKeyDown }) => {
   );
 };
 
-const GameBoard = () => {
+const GameBoard = ({ imagesForLongGame }) => {
   const [openedCardInfo, setOpenedCardInfo] = useState({ src: "", id: null });
   const [isItTimeToMatch, setTimeToMatch] = useState(false);
   const [isWinner, setWinner] = useState(false);
   const [clickCard] = useSound("public/sounds/water-click.mp3");
-
   const isSoundOn = true;
   // const allCards = Array.from(document.getElementsByClassName("card"));
   // allCards.forEach(card => card.addEventListener("click", handleCardClick));
