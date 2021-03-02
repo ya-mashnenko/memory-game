@@ -1,38 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import GameBoard from "./GameBoard";
-import Modal from "./Modal";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./Theme";
-import { GlobalStyles } from "./Style";
-import { generateCards } from "./Utilities";
+// import { ThemeProvider } from "styled-components";
+// import { lightTheme, darkTheme } from "./Theme";
+// import { GlobalStyles } from "./Style";
+import { generateCards } from "./helpers";
 
 const App = () => {
-  // const [theme, setTheme] = useState("light");
-  const [cards, setCards] = useState(generateCards(true));
+  const localStorageCards = Array.from(
+    JSON.parse(localStorage.getItem("cards"))
+  );
+  const [cards, setCards] = useState(localStorageCards || generateCards(true));
   const onNewGame = () => setCards(generateCards(true));
 
-  // const toggleTheme = () => {
-  //   if (theme === "light") {
-  //     setTheme("dark");
-  //   } else {
-  //     setTheme("light");
-  //   }
-  // };
-
-  // const saveProgress = window.localStorage;
+  useEffect(() => {
+    localStorage.setItem("cards", JSON.stringify(cards));
+  }, [cards]);
 
   return (
-    // <ThemeProvider theme={lightTheme}>
     <>
-      {/* <GlobalStyles /> */}
       <Header onNewGame={onNewGame} />
-      <GameBoard imagesForLongGame={cards} />
-      {/* <Modal /> */}
+      <GameBoard cards={cards} setCards={setCards} />
       <Footer />
     </>
-    // </ThemeProvider>
   );
 };
 
