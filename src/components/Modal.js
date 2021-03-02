@@ -14,7 +14,7 @@ const Modal = ({ isWinner, isSoundOn, onNewGame }) => {
   };
 
   return (
-    <div>
+    <>
       {showMod ? (
         <div className="modal-container">
           <div className="modal" id="modal">
@@ -30,7 +30,7 @@ const Modal = ({ isWinner, isSoundOn, onNewGame }) => {
           </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 
