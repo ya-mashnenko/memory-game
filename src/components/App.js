@@ -10,9 +10,12 @@ const App = () => {
     JSON.parse(localStorage.getItem("cards"))
   );
   const localStorageSound = localStorage.getItem("soundOn") === "true";
-  const [cards, setCards] = useState(localStorageCards || generateCards(true));
+  const [isGameLong, setGameLength] = useState(true);
+  const [cards, setCards] = useState(
+    localStorageCards || generateCards(isGameLong)
+  );
   const [isSoundOn, setSound] = useState(localStorageSound || true);
-  const onNewGame = () => setCards(generateCards(true));
+  const onNewGame = (isGameLong) => setCards(generateCards(isGameLong));
 
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
@@ -28,6 +31,8 @@ const App = () => {
         onNewGame={onNewGame}
         switchSound={setSound}
         isSoundOn={isSoundOn}
+        setGameLength={setGameLength}
+        isGameLong={isGameLong}
       />
       <GameBoard
         cards={cards}
