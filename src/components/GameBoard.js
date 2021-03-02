@@ -1,102 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import useSound from "use-sound";
 
-const Card = ({ img, indx, onClick, onKeyDown }) => {
+const Card = ({ img, onClick }) => {
   return (
-    <div
-      onClick={(event) => onClick(event, img)}
-      className="card"
-      onKeyDown={(event) => onKeyDown(event, indx)}
-    >
+    <div onClick={onClick} className={`card ${img.state}`}>
       <img src={img.src} alt="remember this card" className="front" />
     </div>
   );
 };
 
-const GameBoard = ({ imagesForLongGame }) => {
-  const [openedCardInfo, setOpenedCardInfo] = useState({ src: "", id: null });
-  const [isItTimeToMatch, setTimeToMatch] = useState(false);
+const GameBoard = ({ cards, setCards }) => {
   const [isWinner, setWinner] = useState(false);
   const [clickCard] = useSound("public/sounds/water-click.mp3");
   const isSoundOn = true;
-  // const allCards = Array.from(document.getElementsByClassName("card"));
-  // allCards.forEach(card => card.addEventListener("click", handleCardClick));
 
-  const getWinner = () => {
-    const cardsWinners = Array.from(document.getElementsByClassName("guessed"));
-    setWinner(cardsWinners.length === imagesForLongGame.length);
-    if (isWinner) {
-      setTimeout(
-        () =>
-          Array.from(document.getElementsByClassName("guessed")).map(
-            (card) => card.classList.remove("guessed")
+  // const getWinner = () => {
+  //   setWinner(cards.every((img) => img.state === "guessed"));
+  //   if (isWinner) {
+  //     setTimeout(
+  //       () => setCards(cards.map((card) => ({ ...card, state: "closed" }))),
+  //       2000
+  //     );
+  //   }
+  // };
 
-            // card.addEventListener("click", handleCardClick);
-            // return card;
-          ),
-        2000
+  useEffect(() => {
+    const flippedCards = cards.filter((card) => card.state === "flipped");
+    const hasTwoFlipped = flippedCards.length === 2;
+
+    if (!hasTwoFlipped) return;
+
+    const hasMatchedCards = flippedCards[0].src === flippedCards[1].src;
+    const state = hasMatchedCards ? "guessed" : "closed";
+
+    setTimeout(() => {
+      setCards(
+        cards.map((card) =>
+          card.state === "flipped" ? { ...card, state } : card
+        )
       );
-    }
-  };
+    }, 1000);
+  }, [cards]);
 
-  const guessedBehaviour = () => {
-    const selectedCards = Array.from(document.getElementsByClassName("flip"));
-    selectedCards.map((card) => {
-      card.classList.remove("flip");
-      card.classList.add("guessed");
-      return card;
-    });
+  useEffect(() => {
+    const isWinner = cards.every((img) => img.state === "guessed");
+    setWinner(isWinner);
 
-    // const winCards = Array.from(document.getElementsByClassName("guessed"));
-    // winCards.map((card) => card.removeEventListener("click", handleCardClick));
+    // if (isWinner) {
+    //   setTimeout(onNewGame, 2000);
+    // }
+  }, [cards]);
 
-    getWinner();
-  };
-
-  const hideCards = () => {
-    setTimeout(
-      () =>
-        Array.from(document.getElementsByClassName("flip")).map((card) =>
-          card.classList.remove("flip")
-        ),
-      1000
+  const handleCardClick = ({ id, src }) => {
+    setCards(
+      cards.map((card) =>
+        card.id === id ? { id, src, state: "flipped" } : card
+      )
     );
-  };
-
-  const handleCardClick = (event, img) => {
-    const currentCard = event.target;
-    currentCard.classList.add("flip");
     isSoundOn ? clickCard() : null;
-    if (isItTimeToMatch) {
-      img.src === openedCardInfo.src && img.id !== openedCardInfo.id
-        ? guessedBehaviour()
-        : hideCards();
-      setOpenedCardInfo({ src: "", id: null });
-      setTimeToMatch(false);
-    } else {
-      setOpenedCardInfo({ ...img });
-      setTimeToMatch(true);
-    }
-  };
-
-  const handleKeyPress = (event, indx) => {
-    event.key === indx + 1
-      ? console.log(`pressed ${event.code}`)
-      : console.log(`doesn't work ${event.code}`);
   };
 
   return (
     <div className="board-container">
       <div className="board">
-        {imagesForLongGame.map((img, indx) => (
-          <Card
-            key={img.id}
-            img={img}
-            onClick={handleCardClick}
-            indx={indx}
-            onKeyDown={handleKeyPress}
-          />
+        {cards.map((img) => (
+          <Card key={img.id} img={img} onClick={() => handleCardClick(img)} />
         ))}
       </div>
       <>{isWinner ? <Modal result={true} /> : null}</>
