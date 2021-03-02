@@ -24,6 +24,9 @@ const Footer = () => {
           />
         </a>
       </div>
+      <a href="https://icons8.com/icon/3761/menu" id="icons8">
+        Menu icon by Icons8
+      </a>
     </footer>
   );
 };
