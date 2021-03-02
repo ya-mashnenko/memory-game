@@ -7,12 +7,13 @@ const Modal = ({ result }) => {
   const [looserSound] = useSound("public/sounds/loose-sound.mp3");
   const isWinner = result;
 
-  isWinner ? winnerSound() : looserSound();
+  // isWinner ? winnerSound() : looserSound();
   // const hideModal = () => setModal(false);
 
-  // useEffect(() => {
-  //   return setModal(true);
-  // });
+  useEffect(() => {
+    isWinner ? winnerSound() : looserSound();
+    //   return setModal(true);
+  }, []);
 
   return (
     <div>
