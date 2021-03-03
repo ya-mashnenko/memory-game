@@ -13,7 +13,13 @@ const Footer = () => {
           />
         </a>
       </div>
-      <p>2021</p>
+      <p>
+        2021
+        <br />
+        <a href="https://icons8.com/icon/3761/menu" id="icons8">
+          Menu icon by Icons8
+        </a>
+      </p>
       <div className="github-link">
         <a href="https://github.com/ya-mashnenko">
           <img
@@ -24,9 +30,6 @@ const Footer = () => {
           />
         </a>
       </div>
-      <a href="https://icons8.com/icon/3761/menu" id="icons8">
-        Menu icon by Icons8
-      </a>
     </footer>
   );
 };
