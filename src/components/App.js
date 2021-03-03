@@ -5,9 +5,10 @@ import GameBoard from "./GameBoard";
 import { generateCards } from "./helpers";
 
 const App = () => {
-  const localStorageCards = Array.from(
-    JSON.parse(localStorage.getItem("cards"))
-  );
+  let localStorageCards;
+  if (localStorage.getItem("cards")) {
+    localStorageCards = Array.from(JSON.parse(localStorage.getItem("cards")));
+  }
   const localStorageSound = localStorage.getItem("soundOn") === "true";
   const localStorageGameLength = localStorage.getItem("gameLong") === "true";
   const [isGameLong, setGameLength] = useState(localStorageGameLength ?? true);
