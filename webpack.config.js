@@ -9,7 +9,7 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    filename: "./dist/bundle.[hash].js",
+    filename: "./bundle.[hash].js",
   },
   devtool: "inline-source-map",
   module: {

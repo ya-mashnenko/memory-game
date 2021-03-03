@@ -14,7 +14,7 @@ const Header = ({
 }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [showTimer, setTimer] = useState(false);
-  const [clickMenu] = useSound("public/sounds/short-click.mp3");
+  const [clickMenu] = useSound("../public/sounds/short-click.mp3");
   useHotkeys("esc", () => setMenuOpen(false));
 
   const handleTimer = () => {
