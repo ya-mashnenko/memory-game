@@ -35,10 +35,8 @@ module.exports = {
       },
       {
         test: /\.mp3$/,
+        include: SRC,
         loader: "file-loader",
-        query: {
-          name: "static/media/[name].[hash:8].[ext]",
-        },
       },
     ],
   },
