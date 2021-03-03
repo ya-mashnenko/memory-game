@@ -16,16 +16,6 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
   const [winnerSound] = useSound("public/sounds/win-sound.mp3");
   const [looserSound] = useSound("public/sounds/loose-sound.mp3");
 
-  // const getWinner = () => {
-  //   setWinner(cards.every((img) => img.state === "guessed"));
-  //   if (isWinner) {
-  //     setTimeout(
-  //       () => setCards(cards.map((card) => ({ ...card, state: "closed" }))),
-  //       2000
-  //     );
-  //   }
-  // };
-
   useEffect(() => {
     const flippedCards = cards.filter((card) => card.state === "flipped");
     const hasTwoFlipped = flippedCards.length === 2;
@@ -47,12 +37,6 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
   useEffect(() => {
     const isWinner = cards.every((img) => img.state === "guessed");
     setWinner(isWinner);
-    // localStorage.removeItem("cards");
-
-    // if (isWinner) {
-    //   setTimeout(() => {
-    //     localStorage.removeItem("cards");
-    //   }, 2000);
   }, [cards]);
 
   const handleCardClick = ({ id, src }) => {
@@ -79,7 +63,7 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
             isWinner={false}
             isSoundOn={isSoundOn}
             onNewGame={onNewGame}
-            looserSound={looserSound}
+            Sound={looserSound}
           />
         ) : null}
         {isWinner ? (
@@ -87,7 +71,7 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
             isWinner={true}
             isSoundOn={isSoundOn}
             onNewGame={onNewGame}
-            winnerSound={winnerSound}
+            Sound={winnerSound}
           />
         ) : null}
       </>

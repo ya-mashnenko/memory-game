@@ -3,7 +3,6 @@ import Footer from "./Footer";
 import Header from "./Header";
 import GameBoard from "./GameBoard";
 import { generateCards } from "./helpers";
-import Cats from "./Cats";
 
 const App = () => {
   const localStorageCards = Array.from(
@@ -49,7 +48,6 @@ const App = () => {
         onNewGame={onNewGame}
         timeOver={timeOver}
       />
-      <Cats />
       <Footer />
     </>
   );
