@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const port = process.env.PORT || 3000;
-const ASSET_PATH = process.env.ASSET_PATH || "/";
+const ASSET_PATH = process.env.ASSET_PATH || "./";
 
 module.exports = {
   mode: "development",
@@ -20,27 +20,15 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localsConvention: "camelCase",
-              sourceMap: true,
-            },
-          },
-        ],
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "public/index.html",
-      // favicon: "public/favicon.ico",
+      favicon: "public/favicon.ico",
     }),
     new webpack.DefinePlugin({
       "process.env.ASSET_PATH": JSON.stringify(ASSET_PATH),
