@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-const Modal = ({ isWinner, isSoundOn, onNewGame, Sound }) => {
+const Modal = ({ isWinner, isSoundOn, onNewGame, sound }) => {
   const [showMod, setModal] = useState(true);
   useHotkeys("esc", () => setModal(false));
   useHotkeys("enter", () => handleClick());
 
-  isSoundOn ? Sound() : null;
+  isSoundOn ? sound() : null;
 
   const handleClick = () => {
     onNewGame();
@@ -20,7 +20,7 @@ const Modal = ({ isWinner, isSoundOn, onNewGame, Sound }) => {
           <div className="modal" id="modal">
             <h2>{isWinner ? "Congratulations!" : "Time is up!"}</h2>
             <div className="content">
-              {isWinner ? "You won!" : "You loose!"}
+              {isWinner ? `You won!!` : "You loose!"}
             </div>
             <div className="actions">
               <button className="toggle-button" onClick={handleClick}>
