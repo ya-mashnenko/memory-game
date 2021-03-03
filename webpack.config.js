@@ -2,7 +2,9 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const port = process.env.PORT || 3000;
+const path = require("path");
 const ASSET_PATH = process.env.ASSET_PATH || "./";
+const SRC = path.resolve(__dirname, "node_modules");
 
 module.exports = {
   mode: "development",
