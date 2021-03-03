@@ -1,15 +1,15 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
-const port = process.env.PORT || 3000;
-const ASSET_PATH = process.env.ASSET_PATH || "./";
+const SRC = path.resolve(__dirname, "public/");
+const PORT = process.env.PORT || 3000;
 
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    filename: "bundle.[hash].js",
-    publicPath: ASSET_PATH,
+    filename: "./dist/bundle.[hash].js",
   },
   devtool: "inline-source-map",
   module: {
@@ -34,9 +34,7 @@ module.exports = {
       {
         test: /\.mp3$/,
         loader: "file-loader",
-        options: {
-          name: "public/sounds/[name].[hash:8].[ext]",
-        },
+        include: SRC,
       },
     ],
   },
@@ -45,13 +43,10 @@ module.exports = {
       template: "public/index.html",
       favicon: "public/favicon.ico",
     }),
-    new webpack.DefinePlugin({
-      "process.env.ASSET_PATH": JSON.stringify(ASSET_PATH),
-    }),
   ],
   devServer: {
     host: "localhost",
-    port: port,
+    port: PORT,
     historyApiFallback: true,
     open: true,
   },
