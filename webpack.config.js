@@ -23,6 +23,15 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|mp3)$/i,
+        include: SRC,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
     ],
   },
   plugins: [
