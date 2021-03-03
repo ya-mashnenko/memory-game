@@ -63,7 +63,7 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
             isWinner={false}
             isSoundOn={isSoundOn}
             onNewGame={onNewGame}
-            Sound={looserSound}
+            sound={looserSound}
           />
         ) : null}
         {isWinner ? (
@@ -71,7 +71,7 @@ const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
             isWinner={true}
             isSoundOn={isSoundOn}
             onNewGame={onNewGame}
-            Sound={winnerSound}
+            sound={winnerSound}
           />
         ) : null}
       </>
