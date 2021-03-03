@@ -4,7 +4,6 @@ import Header from "./Header";
 import GameBoard from "./GameBoard";
 import { generateCards } from "./helpers";
 import Cats from "./Cats";
-// import useSound from "use-sound";
 
 const App = () => {
   const localStorageCards = Array.from(
@@ -12,11 +11,11 @@ const App = () => {
   );
   const localStorageSound = localStorage.getItem("soundOn") === "true";
   const localStorageGameLength = localStorage.getItem("gameLong") === "true";
-  const [isGameLong, setGameLength] = useState(localStorageGameLength || true);
+  const [isGameLong, setGameLength] = useState(localStorageGameLength ?? true);
   const [cards, setCards] = useState(
     localStorageCards || generateCards(isGameLong)
   );
-  const [isSoundOn, setSound] = useState(localStorageSound || true);
+  const [isSoundOn, setSound] = useState(localStorageSound ?? true);
   const [timeOver, setTimeOver] = useState(false);
   const onNewGame = (isGameLong) => setCards(generateCards(isGameLong));
 
