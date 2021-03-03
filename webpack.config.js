@@ -35,8 +35,10 @@ module.exports = {
       },
       {
         test: /\.mp3$/,
-        include: SRC,
         loader: "file-loader",
+        options: {
+          name: "public/sounds/[name].[hash:8].[ext]",
+        },
       },
     ],
   },
