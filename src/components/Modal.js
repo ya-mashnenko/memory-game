@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import useSound from "use-sound";
+import { useHotkeys } from "react-hotkeys-hook";
 
-const Modal = ({ isWinner, isSoundOn, onNewGame }) => {
+const Modal = ({
+  isWinner,
+  isSoundOn,
+  onNewGame,
+  looserSound,
+  winnerSound,
+}) => {
   const [showMod, setModal] = useState(true);
-  const [winnerSound] = useSound("public/sounds/win-sound.mp3");
-  const [looserSound] = useSound("public/sounds/loose-sound.mp3");
+  useHotkeys("esc", () => setModal(false));
+  useHotkeys("enter", () => handleClick());
 
-  // isSoundOn ? (isWinner ? winnerSound() : looserSound()) : null;
+  isSoundOn ? (isWinner ? winnerSound() : looserSound()) : null;
 
   const handleClick = () => {
     onNewGame();
