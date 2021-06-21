@@ -33,7 +33,11 @@ module.exports = {
       },
       {
         test: /\.mp3$/,
-        loader: "file-loader",
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
         include: SRC,
       },
     ],
