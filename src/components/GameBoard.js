@@ -12,9 +12,9 @@ const Card = ({ img, onClick }) => {
 
 const GameBoard = ({ cards, setCards, isSoundOn, onNewGame, timeOver }) => {
   const [isWinner, setWinner] = useState(false);
-  const [clickCard] = useSound("../public/sounds/water-click.mp3");
-  const [winnerSound] = useSound("../public/sounds/win-sound.mp3");
-  const [looserSound] = useSound("../public/sounds/loose-sound.mp3");
+  const [clickCard] = useSound("../../public/sounds/water-click.mp3");
+  const [winnerSound] = useSound("../../public/sounds/win-sound.mp3");
+  const [looserSound] = useSound("../../public/sounds/loose-sound.mp3");
 
   useEffect(() => {
     const flippedCards = cards.filter((card) => card.state === "flipped");

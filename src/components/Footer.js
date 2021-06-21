@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="github-link">
         <a href="https://github.com/ya-mashnenko">
           <img
-            src="../public/GitHub_Logo.png"
+            src="../../public/GitHub_Logo.png"
             alt="GitHub acc"
             width="70px"
             height="30px"
